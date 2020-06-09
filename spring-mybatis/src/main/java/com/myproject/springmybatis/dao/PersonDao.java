@@ -11,13 +11,13 @@ public interface PersonDao {
 
     List<Person> findAll();
 
-    Person getPersonById(int id);
+    Person getPersonById(Long id);
 
-    void deleteById(int id);
+    int deleteById(Long id);
 
-    void update(Person person);
+    int update(Person person);
 
-    void addPerson(Person person);
+    int addPerson(Person person);
 
     Person isValid(@Param("userName") String userName, @Param("password") String password);
 }

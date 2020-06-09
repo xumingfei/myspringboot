@@ -7,14 +7,15 @@ import java.util.List;
 
 @Service
 public interface PersonService {
-    public List<Person> findAll();
+    List<Person> findAll();
 
-    public Person getPersonById(int id);
+    Person getPersonById(Long id);
 
-    public void deleteById(int id);
+    int deleteById(Long id);
 
-    public void addPerson(Person person);
+    int addPerson(Person person);
 
     Person isValid(String userName, String password);
 
+    int update(Person person);
 }

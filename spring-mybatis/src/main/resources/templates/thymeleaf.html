@@ -3,15 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script type="text/javascript" th:src="@{js/jquery.min.js}"></script>
 </head>
 <body>
 <p style="color:red" th:text="${arg}" th:if="${not #strings.isEmpty(arg)}"></p>
 <p style="color:red" th:text="${arg2}" th:if="${not #strings.isEmpty(arg2)}"></p>
 <p style="color:red" th:text="${arg3}" th:if="${not #strings.isEmpty(arg3)}"></p>
+<input type="text" th:value="${model}">
+<input type="text" th:text="${model}">
+<input type="text" th:utext="${model}">
+<input type="text" th:autofocus="${model}">
+<p th:utext="'用户名称www:'+${name}"></p>
 <div th:object="${thObject}">
     <p>ID: <span th:text="*{id}"/></p><!--th:text="${thObject.id}"-->
     <p>TH: <span th:text="*{userName}"/></p><!--${thObject.thName}-->
     <p>DE: <span th:text="*{mobile}"/></p><!--${thObject.desc}-->
 </div>
+<p th:text="'出生日期:'+${#dates.format(date,'yyyy-MM-dd')}"></p>
+<p th:text="|出生日期:${#dates.format(date,'yyyy-MM-dd')}|"></p>
+<p th:text="${#dates.format(date,'yyyy-MM-dd HH:mm:ss.SSS')}"></p>
+<a th:href="@{/index}">首页</a>
+<a th:href="@{/index.html}">静态首页</a>
+<p >if标签</p>
+<span th:if="${user.age lt 18}">
+    未成年人
+</span>
+<br>
+<span th:if="${user.getAge() gt 18 || user.age==18}">
+    成年人
+</span>
+<br>
+<span th:unless="${user.age gt 18}">
+    你还不满18岁,不能看电影
+</span>
+<div >
+    <table border="1">
+        <tr>
+            <td >序号</td>
+            <td>用户ID</td>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>电话</td>
+            <td>奇数</td>
+            <td>偶数</td>
+        </tr>
+        <tr th:each="user,memberStat:${persons}">
+            <td th:text="${memberStat.index +1}"></td>
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.userName}"></td>
+            <td th:text="${user.age}"></td>
+            <td th:text="${user.mobile}"></td>
+            <td th:text="${memberStat.odd}"></td>
+            <td >
+                <span th:text="${memberStat.even}"></span>
+                <span th:text="${memberStat.current}">当前</span>
+                <span th:text="${memberStat.count}">数量</span>
+            </td>
+        </tr>
+    </table>
+</div>
+<div th:include="@{/common/foolter}::footer" th:with="paojectName=百度1"></div>
 </body>
 </html>
