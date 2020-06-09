@@ -3,21 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script th:src="@{js/jquery.min.js}"></script>
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet">
+    <script th:src="@{js/jquery.js}"></script>
+    <script src="js/jquery.js" ></script>
+    <script th:src="@{js/bootstrap/bootstrap.js}" ></script>
     <script type="text/javascript">
         function reset() {
             $("#userName").val="";
-            $("password").val="";
+            $("#password").val="";
         }
     </script>
 </head>
 <body>
-<form th:action="@{/login}" method="post">
-    <p style="color:red" th:text="${msg}"  th:if="${not #strings.isEmpty(msg)}"></p>
-    用户名:<input id="userName" name="userName" type="text" placeholder="用户名"/><br>
-    密码:<input id="password" type="password" name="password" placeholder="密码"/><br>
-    <input type="button" value="重置" onclick="reset()">&nbsp;&nbsp;&nbsp;<input type="submit" value="提交">
-</form>
+<div class="container">
+    <div class="form row">
+        <form th:action="@{/login}" method="post"  class="form-horizontal col-sm-offset-3 col-md-offset-3" id="login_form">
+            <h3 class="form-title">Login to your account</h3>
+            <h4 class="form-title"><p style="color:red" th:text="${msg}"  th:if="${not #strings.isEmpty(msg)}"></p></h4>
+            <div class="col-sm-9 col-md-9">
+                <div class="form-group">
+                    <i class="fa fa-user fa-lg"></i>
+                    <input class="form-control required" type="text" placeholder="用户名" name="userName" autofocus="autofocus" maxlength="20"/>
+                </div>
+                <div class="form-group">
+                    <i class="fa fa-lock fa-lg"></i>
+                    <input class="form-control required" type="password" placeholder="密码" name="password" maxlength="8"/>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox">
+                        <input type="checkbox" name="remember" value="1"/> 记住我
+                    </label>
+                    <hr />
+                    <a th:href="@{/register}" id="register_btn" class="">注册</a>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success pull-right" value="Login "/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--    <div class="container">-->
+<!--    <div class="row">-->
+<!--        <form th:action="@{/login}" method="post" class="form-horizontal col-sm-offset-3 col-md-offset-3" id="login_form" >-->
+<!--            <h3 class="form-title">Login to your account</h3>-->
+<!--            <div class="col-md-4">-->
+<!--                <div class="panel panel-primary">-->
+<!--                    <div class="panel-heading text-center">-->
+<!--                        <span class="panel-title">个人信息</span>-->
+<!--                    </div>-->
+<!--                    <div class="form-group" >-->
+<!--                        <label for="userName" class="col-sm-3 control-label" style="color:red">用户名:</label>-->
+<!--                        <div class="col-sm-8">-->
+<!--                            <input class="form-control" id="userName" name="userName" type="text" placeholder="用户名"/>-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="password" class="col-sm-3 control-label" style="color: red">密&nbsp;码:</label>-->
+<!--                            <div class="col-sm-8">-->
+<!--                                <input type="password" class="form-control" id="password" name="password"-->
+<!--                                       placeholder="请输入密码">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label class="col-sm-10 control-label" style="color:red;text-align: center"-->
+<!--                                   id="tick">&nbsp;</label>-->
+<!--                        </div>-->
+<!--                        <div class="" style="margin-left: 65%;">-->
+<!--                            <button type="button" class="btn btn-default" onclick="reset()">重置</button>-->
+<!--                            <button type="button" id="submit" class="btn btn-default">登录</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--&lt;!&ndash;            <p style="color:red" th:text="${msg}"  th:if="${not #strings.isEmpty(msg)}"></p>&ndash;&gt;-->
+<!--&lt;!&ndash;            用户名:<input id="userName" name="userName" type="text" placeholder="用户名"/><br>&ndash;&gt;-->
+<!--&lt;!&ndash;            密码:<input id="password" type="password" name="password" placeholder="密码"/><br>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="button" value="重置" onclick="reset()">&nbsp;&nbsp;&nbsp;<input type="submit" value="提交">&ndash;&gt;-->
+<!--        </form>-->
+<!--    </div>-->
+
+<!--</div>-->
 
 
 </body>

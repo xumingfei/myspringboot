@@ -4,7 +4,6 @@
 <!-- 使用thymeleaf需引入 -->
 <html xmlns:th="http://www.thymeleaf.org" >
 <head>
-    测试
     <script th:src="@{js/jquery.min.js}"></script>
     <script type="text/javascript">
         function reset(){
@@ -14,7 +13,9 @@
 </head>
 <body>
 <div  id="tableP">
-    <a href="/logout" >退出</a>
+    <div style="margin-left: 25%">
+        <a href="/logout" >退出</a>
+    </div>
     <table>
         <caption>人员信息</caption>
         <tr>
@@ -37,7 +38,6 @@
             </div>
         </div>
     </table>
-</div>
 </div>
 </body>
 </html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/save}" method="post" th:object="${person}">
+    <input type="hidden" th:id="*{id}" name="id" th:value="*{id}"/>
+    用户名:<input th:value="*{userName}" name="userName"><br>
+    年龄:<input type="text" th:value="*{age}" name="age"><br>
+    手机号:<input type="text" th:value="*{mobile}" name="mobile"><br>
+    <input type="submit" value="提交">
+ </form>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        function login(){
+            window.location.href = "/login";
+        }
+    </script>
+</head>
+<body>
+<h3 th:text="${msg}"></h3>
+<input type="button" value="点击登录" onclick="login()">
+</body>
+</html>

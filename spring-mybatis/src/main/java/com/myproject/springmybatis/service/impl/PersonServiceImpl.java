@@ -5,6 +5,7 @@ import com.myproject.springmybatis.model.Person;
 import com.myproject.springmybatis.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.StringUtils;
 
 import java.util.List;
 
@@ -23,18 +24,24 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person getPersonById(int id) {
+    public Person getPersonById(Long id) {
         return personDao.getPersonById(id);
     }
 
     @Override
-    public void deleteById(int id) {
-        personDao.deleteById(id);
+    public int deleteById(Long id) {
+        return personDao.deleteById(id);
     }
 
     @Override
-    public void addPerson(Person person) {
-        personDao.addPerson(person);
+    public int addPerson(Person person) {
+        int count = 0;
+        if (StringUtils.isEmpty(person.getPassword())) {
+            person.setPassword("123456");
+        }
+        count = personDao.addPerson(person);
+        System.out.println(count);
+        return count;
     }
 
     @Override
@@ -42,4 +49,21 @@ public class PersonServiceImpl implements PersonService {
         Person person = personDao.isValid(userName, password);
         return person;
     }
+
+    @Override
+    public int update(Person person) {
+        Person obj = this.getPersonById(person.getId());
+        int count = 0;
+        if (obj != null) {
+            count = personDao.update(person);
+        } else {
+            if (StringUtils.isEmpty(person.getPassword())) {
+                person.setPassword("123456");
+            }
+            count = this.addPerson(person);
+        }
+        return count;
+    }
+
+
 }

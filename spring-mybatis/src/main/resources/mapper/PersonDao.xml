@@ -31,12 +31,12 @@
     </select>
 
     <!-- 增 -->
-    <insert id="addPerson" parameterType="com.myproject.springmybatis.model.Person">
+    <insert id="addPerson" useGeneratedKeys="true" keyProperty="id" parameterType="com.myproject.springmybatis.model.Person">
         insert into
         <include refid="table"/>
-        (username,mobile,password)
+        (username,mobile,password,age)
         values
-        (#{userName},#{mobile},#{password})
+        (#{userName},#{mobile},#{password},#{age})
     </insert>
 
     <!-- 改 -->
@@ -44,14 +44,15 @@
         UPDATE
         <include refid="table"/>
         SET
-        <!--<if test="name != null">name = #{name}</if>-->
-        name  = #{name},mobile = #{mobile},status = #{status}
+        <if test="userName != null">userName = #{userName},</if>
+        <if test="mobile != null">mobile = #{mobile},</if>
+        <if test="age != null">age = #{age}</if>
         WHERE
         id = #{id}
     </update>
 
     <!-- 删 -->
-    <delete id="delete" parameterType="com.myproject.springmybatis.model.Person">
+    <delete id="deleteById" parameterType="com.myproject.springmybatis.model.Person">
         DELETE FROM
         <include refid="table"/>
         WHERE

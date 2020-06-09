@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import org.thymeleaf.util.StringUtils;
 
 import javax.servlet.http.HttpSession;
@@ -61,15 +60,7 @@ public class LoginController {
         return "index1";
     }
 
-    @RequestMapping("thymeleaf")
-    public String thymeleaf(ModelMap map, Map map1, ModelAndView mv){
-        map.put("arg", "1");
-        map.addAttribute("arg2", "2");
-        map1.put("arg3", 333);
-        mv.addObject("user", new Person(2, "lisi", "'123'"));
-        map.put("thObject",new Person(2, "lisi", "'123'"));
-        return "thymeleaf";
-    }
+
 
     @RequestMapping("/hellow")
     @ResponseBody
