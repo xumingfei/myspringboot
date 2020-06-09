@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+#logging:
+#  level:
+#    root: debug
+#    org.spring: debug
+
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  http:
+    encoding.charset: UTF-8
+    encoding.enable: true
+    encoding.force: true
+  datasource:
+    validation-query: SELECT 1
+    test-on-borrow: true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characEncoding=UTF-8&useSSL=false&serverZoneTime=UTC
+    username: root
+    password: 123456
+#热部署
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+
+#mybatis配置
+mybatis:
+  type-aliases-package: com.wisely.highlight_springmvc4.pojo
+  mapper-locations: classpath*:mybatis/**/*Mapper.xml

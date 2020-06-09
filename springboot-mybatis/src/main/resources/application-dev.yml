@@ -1,0 +1,29 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  thymeleaf:
+    cache: false
+    enabled: true
+    encoding: utf-8
+    mode: HTML
+    suffix: .html
+    prefix: classpath:/template/
+mybatis:
+  type-aliases-package: com.practice.springbootmybatis.entity
+  mapper-locations: classpath:mapper/*Mapper.xml
+
+
+
+#showSql
+logging:
+  level:
+    com:
+      practice:
+        springbootmybatis:
+          mapper: debug

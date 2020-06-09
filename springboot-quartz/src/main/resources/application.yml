@@ -1,0 +1,9 @@
+
+# \u65E5\u5FD7\u914D\u7F6E
+logging:
+  level:
+    com.ruoyi: debug
+    org.springframework: WARN
+    org.spring.springboot.dao: debug
+server:
+  port: 8081

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p style="color:red" th:text="${arg}" th:if="${not #strings.isEmpty(arg)}"></p>
+<p style="color:red" th:text="${arg2}" th:if="${not #strings.isEmpty(arg2)}"></p>
+<p style="color:red" th:text="${arg3}" th:if="${not #strings.isEmpty(arg3)}"></p>
+<div th:object="${thObject}">
+    <p>ID: <span th:text="*{id}"/></p><!--th:text="${thObject.id}"-->
+    <p>TH: <span th:text="*{userName}"/></p><!--${thObject.thName}-->
+    <p>DE: <span th:text="*{mobile}"/></p><!--${thObject.desc}-->
+</div>
+</body>
+</html>

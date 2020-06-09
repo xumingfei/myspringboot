@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.myproject.springmybatis.dao.PersonDao"  >
+    <!-- 填写数据库里实例Person对应的表的表名 -->
+    <!-- 这里是作为一个变量使用 -->
+    <sql id="table">person</sql>
+    <resultMap id="baseMap" type="person">
+        <id column="id" property="id"/>
+        <result column="username" property="userName"/>
+        <result column="password" property="password"/>
+        <result column="mobile" property="mobile"/>
+    </resultMap>
+
+    <!-- id属性填写Dao文件里的函数名称 xxType是参数或是结果的类型根据情况填写 -->
+    <!-- 查询所有   -->
+    <select id="findAll" resultType="com.myproject.springmybatis.model.Person">
+        select * from 
+        <include refid="table"/>
+    </select>
+
+    <select id="isValid" resultMap="baseMap" >
+        select * from person where userName=#{userName} and password=#{password}
+    </select>
+
+
+    <!-- 根据id查询 -->
+    <select id="getPersonById" resultType="com.myproject.springmybatis.model.Person">
+        select * from  <include refid="table"/>
+        where id=#{id}
+    </select>
+
+    <!-- 增 -->
+    <insert id="addPerson" parameterType="com.myproject.springmybatis.model.Person">
+        insert into
+        <include refid="table"/>
+        (username,mobile,password)
+        values
+        (#{userName},#{mobile},#{password})
+    </insert>
+
+    <!-- 改 -->
+    <update id="update" parameterType="com.myproject.springmybatis.model.Person">
+        UPDATE
+        <include refid="table"/>
+        SET
+        <!--<if test="name != null">name = #{name}</if>-->
+        name  = #{name},mobile = #{mobile},status = #{status}
+        WHERE
+        id = #{id}
+    </update>
+
+    <!-- 删 -->
+    <delete id="delete" parameterType="com.myproject.springmybatis.model.Person">
+        DELETE FROM
+        <include refid="table"/>
+        WHERE
+        id = #{id}
+    </delete>
+</mapper>
