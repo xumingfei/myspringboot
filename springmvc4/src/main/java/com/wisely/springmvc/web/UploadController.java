@@ -1,4 +1,4 @@
-package com.wisely.highlight_springmvc4.web;
+package com.wisely.springmvc.web;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;

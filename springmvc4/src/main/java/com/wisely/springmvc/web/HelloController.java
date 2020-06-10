@@ -1,4 +1,4 @@
-package com.wisely.highlight_springmvc4.web;
+package com.wisely.springmvc.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +9,7 @@ public class HelloController {
 
     @RequestMapping("/index")
 //    @ResponseBody
-    public String hello() {
+    public String index() {
         return "index";
     }
 
@@ -34,6 +34,12 @@ public class HelloController {
         String str = "123";
         String s = "222222";
         return null;
+    }
+
+    @RequestMapping("hello")
+    public String hello(){
+        System.out.println("Hello");
+        return "success";
     }
 
 }

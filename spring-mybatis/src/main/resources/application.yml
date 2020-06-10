@@ -1,12 +1,14 @@
 
 server:
-  port: 8081
+  port: 80
+  servlet:
+    context-path: /
 spring:
   datasource:
     name:
     url: jdbc:mysql://localhost:3306/springboot?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC
     username: root
-    password: 12345678
+    password: 123456
   jpa:
     show-sql: true
   devtools:
@@ -32,6 +34,15 @@ mybatis:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     cache-enabled: true
     use-generated-keys: true
+
+# PageHelper分页插件
+# PageHelper分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
 logging:
   level:
     org:

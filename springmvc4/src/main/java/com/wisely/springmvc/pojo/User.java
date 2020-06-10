@@ -1,4 +1,4 @@
-package com.wisely.highlight_springmvc4.pojo;
+package com.wisely.springmvc.pojo;
 
 import java.io.Serializable;
 

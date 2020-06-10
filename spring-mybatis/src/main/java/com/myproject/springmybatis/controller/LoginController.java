@@ -39,7 +39,7 @@ public class LoginController {
             System.out.println("---"+userName);
             if (person != null) {
                 map.put("age", 30);
-                map.put("thObject",person);
+                map.addAttribute("user",person);
                 map.put("list", personService.findAll());
                 return "redirect:/index";
             }else {

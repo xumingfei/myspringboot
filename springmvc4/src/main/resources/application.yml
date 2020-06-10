@@ -1,11 +1,12 @@
 server:
   port: 8080
+  servlet:
+    context-path: /
 
 #logging:
 #  level:
 #    root: debug
 #    org.spring: debug
-
 
 spring:
   mvc:
@@ -34,5 +35,5 @@ spring:
 
 #mybatis配置
 mybatis:
-  type-aliases-package: com.wisely.highlight_springmvc4.pojo
+  type-aliases-package: com.wisely.springmvc.pojo
   mapper-locations: classpath*:mybatis/**/*Mapper.xml

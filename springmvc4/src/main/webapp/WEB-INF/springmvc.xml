@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       https://www.springframework.org/schema/mvc/spring-mvc.xsd"
+       >
+
+    <!--配置自定义的拦截器-->
+    <mvc:interceptors>
+        <!--拦截器1-->
+        <mvc:interceptor>
+            <!--配置拦截器的作用路径-->
+            <mvc:mapping path= "/**"/><!--拦截的路径规则-->
+            <!--定义在<mvc:interceptor>下面的表示匹配指定路径的请求才进行拦截-->
+            <bean class="com.wisely.springmvc.intercepter.UserInterceptor"/>
+        </mvc:interceptor>
+
+    </mvc:interceptors>
+</beans>

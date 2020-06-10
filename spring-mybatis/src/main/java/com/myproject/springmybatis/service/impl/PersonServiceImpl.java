@@ -1,5 +1,7 @@
 package com.myproject.springmybatis.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.myproject.springmybatis.mapper.PersonMapper;
 import com.myproject.springmybatis.model.Person;
 import com.myproject.springmybatis.page.PageBean;
@@ -74,11 +76,19 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public PageBean<Person> pageAll(int currentPage, int pageSize) {
         int count = personMapper.countAll();
-        List<Person> list = personMapper.pageAll(currentPage,pageSize);
+        List<Person> list = personMapper.pageAll((currentPage-1)*pageSize,pageSize);
         PageBean<Person> pageBean = new PageBean(list,count);
         pageBean.setCurrentPage(currentPage);
         pageBean.setPageSize(pageSize);
         return pageBean;
+    }
+
+    @Override
+    public PageInfo<Person> findByPage(Person person, int curretPage, int pageSize) {
+        PageHelper.startPage(curretPage,pageSize);
+        List<Person> list = personMapper.findByPage(person, curretPage, pageSize);
+        PageInfo<Person> pageInfo = new PageInfo<>(list);
+        return pageInfo;
     }
 
 

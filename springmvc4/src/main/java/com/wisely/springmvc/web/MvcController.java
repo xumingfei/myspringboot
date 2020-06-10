@@ -1,4 +1,4 @@
-package com.wisely.highlight_springmvc4.web;
+package com.wisely.springmvc.web;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.myproject.springmybatis.dao.PersonMapper"  >
+<mapper namespace="com.myproject.springmybatis.mapper.PersonMapper"  >
     <!-- 填写数据库里实例Person对应的表的表名 -->
     <!-- 这里是作为一个变量使用 -->
     <sql id="table">person</sql>
@@ -10,6 +10,7 @@
         <result column="username" property="userName"/>
         <result column="password" property="password"/>
         <result column="mobile" property="mobile"/>
+        <result column="age" property="age"/>
     </resultMap>
 
     <!-- id属性填写Dao文件里的函数名称 xxType是参数或是结果的类型根据情况填写 -->
@@ -58,4 +59,23 @@
         WHERE
         id = #{id}
     </delete>
+    <select id="pageAll" resultMap="baseMap">
+        select * from person limit #{currentPage},#{pageSize}
+    </select>
+    <select id="countAll" resultType="int">
+        select count(1) from person
+    </select>
+    <select id="findByPage" resultMap="baseMap" >
+<!--        <bind name="userName" value="'%' + person.getUserName() + '%'" />-->
+<!--        <bind name="mobile" value="'%' + person.getMobile() + '%'" />-->
+        select * from person
+        <where>
+            <if test="person.userName != ''and person.userName!=null">
+               userName like #{person.userName}
+            </if>
+            <if test="person.mobile != '' and person.mobile !=null">
+               and mobile like #{person.mobile}
+            </if>
+        </where>
+    </select>
 </mapper>
