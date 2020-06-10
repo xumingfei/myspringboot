@@ -1,6 +1,6 @@
 
 server:
-  port: 80
+  port: 8081
   servlet:
     context-path: /
 spring:
@@ -8,7 +8,7 @@ spring:
     name:
     url: jdbc:mysql://localhost:3306/springboot?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC
     username: root
-    password: 123456
+    password: 12345678
   jpa:
     show-sql: true
   devtools:
@@ -24,6 +24,13 @@ spring:
     suffix: .html
     encoding: utf-8
     prefix: classpath:/templates/
+
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      enabled: true
+      max-request-size: 5MB
+
 
 
 
