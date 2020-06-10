@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-//@RequestMapping("/person")
 public class PersonController {
 
     Logger logger = LoggerFactory.getLogger(PersonController.class);
@@ -79,6 +78,11 @@ public class PersonController {
         personservice.addPerson(person);
         model.addAttribute("msg", "注册成功");
         return "success";
+    }
+
+    @RequestMapping("/form")
+    public String form(){
+        return "form";
     }
 
 

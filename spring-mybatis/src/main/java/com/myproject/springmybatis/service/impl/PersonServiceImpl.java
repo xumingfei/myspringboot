@@ -40,7 +40,12 @@ public class PersonServiceImpl implements PersonService {
         if (StringUtils.isEmpty(person.getPassword())) {
             person.setPassword("123456");
         }
-        count = personMapper.addPerson(person);
+        Person obj = this.getPersonById(person.getId());
+        if (obj != null) {
+            count = personMapper.update(person);
+        }else {
+            count = personMapper.addPerson(person);
+        }
         System.out.println(count);
         return count;
     }

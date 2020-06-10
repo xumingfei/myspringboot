@@ -40,7 +40,8 @@ public class LoginController {
             if (person != null) {
                 map.put("age", 30);
                 map.put("thObject",person);
-                return "redirect:/index1";
+                map.put("list", personService.findAll());
+                return "redirect:/index";
             }else {
                 session.invalidate();
                 map.put("msg", "用户名密码错误");
