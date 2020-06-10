@@ -1,6 +1,7 @@
 package com.myproject.springmybatis.service;
 
 import com.myproject.springmybatis.model.Person;
+import com.myproject.springmybatis.page.PageBean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface PersonService {
     Person isValid(String userName, String password);
 
     int update(Person person);
+
+    PageBean<Person> pageAll(int currentPage, int pageSize);
 }

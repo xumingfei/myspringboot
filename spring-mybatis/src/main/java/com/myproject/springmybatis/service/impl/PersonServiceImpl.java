@@ -1,7 +1,8 @@
 package com.myproject.springmybatis.service.impl;
 
-import com.myproject.springmybatis.dao.PersonDao;
+import com.myproject.springmybatis.mapper.PersonMapper;
 import com.myproject.springmybatis.model.Person;
+import com.myproject.springmybatis.page.PageBean;
 import com.myproject.springmybatis.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,21 +17,21 @@ import java.util.List;
 @Service
 public class PersonServiceImpl implements PersonService {
     @Autowired
-    PersonDao personDao;
+    PersonMapper personMapper;
 
     @Override
     public List<Person> findAll() {
-        return personDao.findAll();
+        return personMapper.findAll();
     }
 
     @Override
     public Person getPersonById(Long id) {
-        return personDao.getPersonById(id);
+        return personMapper.getPersonById(id);
     }
 
     @Override
     public int deleteById(Long id) {
-        return personDao.deleteById(id);
+        return personMapper.deleteById(id);
     }
 
     @Override
@@ -39,14 +40,14 @@ public class PersonServiceImpl implements PersonService {
         if (StringUtils.isEmpty(person.getPassword())) {
             person.setPassword("123456");
         }
-        count = personDao.addPerson(person);
+        count = personMapper.addPerson(person);
         System.out.println(count);
         return count;
     }
 
     @Override
     public Person isValid(String userName, String password) {
-        Person person = personDao.isValid(userName, password);
+        Person person = personMapper.isValid(userName, password);
         return person;
     }
 
@@ -55,7 +56,7 @@ public class PersonServiceImpl implements PersonService {
         Person obj = this.getPersonById(person.getId());
         int count = 0;
         if (obj != null) {
-            count = personDao.update(person);
+            count = personMapper.update(person);
         } else {
             if (StringUtils.isEmpty(person.getPassword())) {
                 person.setPassword("123456");
@@ -63,6 +64,16 @@ public class PersonServiceImpl implements PersonService {
             count = this.addPerson(person);
         }
         return count;
+    }
+
+    @Override
+    public PageBean<Person> pageAll(int currentPage, int pageSize) {
+        int count = personMapper.countAll();
+        List<Person> list = personMapper.pageAll(currentPage,pageSize);
+        PageBean<Person> pageBean = new PageBean(list,count);
+        pageBean.setCurrentPage(currentPage);
+        pageBean.setPageSize(pageSize);
+        return pageBean;
     }
 
 

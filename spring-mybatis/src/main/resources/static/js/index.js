@@ -4,5 +4,6 @@ var index = {
     },
     add : function() {
         window.location.href="/add";
-    }
+    },
+
 }
