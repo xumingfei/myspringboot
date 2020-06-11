@@ -1,7 +1,6 @@
 package com.myproject.springmybatis.controller;
 
 import com.myproject.springmybatis.model.Person;
-import com.sun.deploy.net.HttpResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +31,7 @@ public class FileUploadController {
     @ResponseBody
     public Map<String,Object> upload(Person person, @RequestParam("file") MultipartFile file,@RequestParam("files") MultipartFile[] files) throws IOException {
         Map<String,Object> map = new HashMap<>();
-        String filePath = "/Users/xumingfei/Desktop/test/";
+        String filePath = "D:\\file\\";
         System.out.println(person);
         if (!file.isEmpty()) {
             String contentType = file.getContentType();

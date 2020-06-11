@@ -1,7 +1,16 @@
 package com.myproject.springmybatis.controller;
 
+import com.myproject.springmybatis.model.AjaxResult;
 import com.myproject.springmybatis.model.Person;
 import com.myproject.springmybatis.service.PersonService;
+import com.myproject.springmybatis.service.UserService;
+import com.myproject.springmybatis.util.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -9,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.thymeleaf.util.StringUtils;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -19,18 +27,24 @@ import java.util.Map;
  * @DATE: 2020/6/8 14:11
  */
 @Controller
-public class LoginController {
+public class LoginController extends BaseController{
+
+    private static final Logger log = LoggerFactory.getLogger(LoginController.class);
+
 
     @Autowired
     PersonService personService;
 
-    @RequestMapping("/login")
+    @Autowired
+    UserService userService;
+
+    @GetMapping("/login")
     public String gologin(){
         return "login";
     }
 
 
-    @PostMapping("/login")
+    @PostMapping("/login1")
     public String login(String userName, String password, ModelMap map, HttpSession session) {
         if (!StringUtils.isEmpty(userName) && !StringUtils.isEmpty(password)) {
             session.setAttribute("userName", userName);
@@ -76,5 +90,29 @@ public class LoginController {
             session.removeAttribute("userName");
         }
         return "forward:/login";
+    }
+
+    @PostMapping("/login")
+    @ResponseBody
+    public AjaxResult ajaxLogin(String userName, String password, Boolean rememberMe,HttpSession session)
+    {
+        UsernamePasswordToken token = new UsernamePasswordToken(userName, password, rememberMe);
+        Subject subject = SecurityUtils.getSubject();
+        try
+        {
+            subject.login(token);
+            session.setAttribute("userName",userName);
+            return success();
+        }
+        catch (AuthenticationException e)
+        {
+            String msg = "用户或密码错误";
+            if (StringUtils.isNotEmpty(e.getMessage()))
+            {
+                e.printStackTrace();
+                msg = e.getMessage();
+            }
+            return error(msg);
+        }
     }
 }
