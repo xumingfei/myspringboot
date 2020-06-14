@@ -39,4 +39,13 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
         registry.addResourceHandler("/font/**").addResourceLocations("classpath:/static/font/");
         registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/static/assets/");
     }
+
+    //使用CommonsMultipart接收附件时需要增加该Bean,否则会失败
+//    @Bean
+//    public CommonsMultipartResolver multipartResolver() {
+//        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+//        multipartResolver.setMaxUploadSize(20971520);
+//        multipartResolver.setMaxInMemorySize(1048576);
+//        return multipartResolver;
+//    }
 }

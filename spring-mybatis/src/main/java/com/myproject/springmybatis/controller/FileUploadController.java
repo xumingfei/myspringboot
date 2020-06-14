@@ -30,6 +30,7 @@ public class FileUploadController {
     @PostMapping("/upload")
     @ResponseBody
     public Map<String,Object> upload(Person person, @RequestParam("file") MultipartFile file,@RequestParam("files") MultipartFile[] files) throws IOException {
+//    public Map<String,Object> upload(Person person, @RequestParam(value = "file",required = false) CommonsMultipartFile file, @RequestParam("files") MultipartFile[] files) throws IOException {
         Map<String,Object> map = new HashMap<>();
         String filePath = "D:\\file\\";
         System.out.println(person);
@@ -42,14 +43,15 @@ public class FileUploadController {
         }else {
             map.put("msg","上传失败");
         }
-        for (MultipartFile f :
-                files) {
-            String fname = f.getOriginalFilename();
-            f.transferTo(new File(filePath+fname));
-            System.out.println(f.getOriginalFilename());
-
+        if (files.length > 0 && !files[0].isEmpty()) {
+            for (MultipartFile f :
+                    files) {
+                String fname = f.getOriginalFilename();
+                f.transferTo(new File(filePath+fname));
+                System.out.println(f.getOriginalFilename());
+            }
+            map.put("msg1","上传多个附件成功");
         }
-        map.put("msg1","上传多个附件成功");
         return map;
     }
 
