@@ -3,16 +3,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.spring.redis.springredis.mapper.UserMapper">
     <select id="getUser" parameterType="long" resultType="user">
-        select id,username,note from user
+        select id,username,note from users
         where id=#{id}
     </select>
 
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="id" parameterType="user">
-        insert into user(username,note) values (#{userName}, #{note})
+        insert into users(username,note) values (#{userName}, #{note})
     </insert>
 
     <update id="updateUser" >
-        update user
+        update users
         <set>
             <if test="userName !=null">
                 username=#{userName},
@@ -25,7 +25,7 @@
     </update>
 
     <select id="findUsers" parameterType="user">
-        select id, username,note from user
+        select id, username,note from users
         <where>
             <if test="userName != null">
                 and username=#{userName}
@@ -37,6 +37,6 @@
     </select>
 
     <delete id="deleteUser" parameterType="long">
-        delete from user where id=#{id}
+        delete from users where id=#{id}
     </delete>
 </mapper>

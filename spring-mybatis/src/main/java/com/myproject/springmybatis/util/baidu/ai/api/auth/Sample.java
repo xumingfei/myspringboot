@@ -11,11 +11,7 @@ import java.util.HashMap;
  */
 public class Sample {
 
-
-
-
-
-    //设置APPID/AK/SK
+    //设置APPID/AK/SK   api-key有效期一个月.
     public static final String APP_ID = "20349900";
     public static final String API_KEY = "dVZxWisqAm1nIuCbILQtdZGU";
     public static final String SECRET_KEY = "c5znXO8WFwxZjq4Oj4yrd0aPyqhFdutc";
