@@ -7,4 +7,7 @@
     <select id="getUserByLoginName" resultType="user">
         select * from user where username=#{userName}
     </select>
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.myproject.springmybatis.model.User">
+        insert into user (username,password,phonenumber) values (#{user.userName},#{user.password},#{user.phonenumber})
+    </insert>
 </mapper>

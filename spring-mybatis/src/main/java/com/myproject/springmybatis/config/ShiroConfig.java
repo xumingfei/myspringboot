@@ -32,6 +32,8 @@ public class ShiroConfig {
         // authc:所有url必须认证公国才能访问;anon:所有rl都可以匿名访问
         filterChainDefinitionMap.put("/webjars/**", "anon");
         filterChainDefinitionMap.put("/login", "anon");
+        filterChainDefinitionMap.put("/register", "anon");
+        filterChainDefinitionMap.put("/success", "anon");
         filterChainDefinitionMap.put("/", "anon");
 
         filterChainDefinitionMap.put("/admin/**", "authc");

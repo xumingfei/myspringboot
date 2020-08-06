@@ -43,6 +43,11 @@ public class LoginController extends BaseController{
         return "login";
     }
 
+    @RequestMapping("/register")
+    public String register() {
+        log.info("register");
+        return "register";
+    }
 
     @PostMapping("/login1")
     public String login(String userName, String password, ModelMap map, HttpSession session) {

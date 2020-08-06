@@ -2,8 +2,11 @@ package com.myproject.springmybatis.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.myproject.springmybatis.model.Person;
+import com.myproject.springmybatis.model.User;
 import com.myproject.springmybatis.page.PageBean;
 import com.myproject.springmybatis.service.PersonService;
+import com.myproject.springmybatis.service.UserService;
+import com.myproject.springmybatis.util.ShiroUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +28,9 @@ public class PersonController {
     Logger logger = LoggerFactory.getLogger(PersonController.class);
     @Autowired
     PersonService personservice;
+
+    @Autowired
+    UserService userService;
 
     @RequestMapping("/index")
     public String
@@ -81,15 +87,17 @@ public class PersonController {
         return "redirect:index";
     }
 
-    @RequestMapping("/register")
-    public String register() {
-        return "person/register";
-    }
-
     @RequestMapping("/success")
     public String success(Model model, Person person) {
 
         personservice.addPerson(person);
+        User user = new User();
+        user.setAge(person.getAge());
+        user.setUserName(person.getUserName());
+        user.setPhonenumber(person.getMobile());
+        String password = ShiroUtils.MD5Pwd(person.getUserName(),person.getPassword());
+        user.setPassword(password);
+        userService.save(user);
         model.addAttribute("msg", "注册成功");
         return "success";
     }

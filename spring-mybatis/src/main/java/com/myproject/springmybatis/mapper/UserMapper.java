@@ -13,4 +13,6 @@ public interface UserMapper {
     String getPassword(@Param("userName") String userName);
 
     User getUserByLoginName(@Param("userName") String userName);
+
+    int save(@Param("user") User user);
 }
