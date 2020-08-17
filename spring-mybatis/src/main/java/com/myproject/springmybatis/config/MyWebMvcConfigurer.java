@@ -21,6 +21,7 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
         .excludePathPatterns("/js/**")
         .excludePathPatterns("/font/**")
         .excludePathPatterns("/images/**")
+        .excludePathPatterns("/webjars/**")
         .excludePathPatterns("/css/**");
     }
 
@@ -37,7 +38,6 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
         registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
         registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
         registry.addResourceHandler("/font/**").addResourceLocations("classpath:/static/font/");
-        registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/static/assets/");
     }
 
     //使用CommonsMultipart接收附件时需要增加该Bean,否则会失败

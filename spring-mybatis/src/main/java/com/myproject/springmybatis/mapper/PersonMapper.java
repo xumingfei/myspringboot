@@ -25,5 +25,5 @@ public interface PersonMapper {
 
     List<Person> pageAll(@Param("currentPage") int currentPage, @Param("pageSize") int pageSize);
 
-    List<Person> findByPage(@Param("person") Person person, @Param("currentPage") int currentPage, @Param("pageSize") int pageSize);
+    List<Person> findByPage(@Param("person") Person person);
 }

@@ -86,7 +86,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public PageInfo<Person> findByPage(Person person, int curretPage, int pageSize) {
         PageHelper.startPage(curretPage,pageSize);
-        List<Person> list = personMapper.findByPage(person, curretPage, pageSize);
+        List<Person> list = personMapper.findByPage(person);
         PageInfo<Person> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }

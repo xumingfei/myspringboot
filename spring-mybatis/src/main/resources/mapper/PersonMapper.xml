@@ -66,8 +66,8 @@
         select count(1) from person
     </select>
     <select id="findByPage" resultMap="baseMap" >
-<!--        <bind name="userName" value="'%' + person.getUserName() + '%'" />-->
-<!--        <bind name="mobile" value="'%' + person.getMobile() + '%'" />-->
+        <bind name="userName" value="'%' + person.getUserName() + '%'" />
+        <bind name="mobile" value="'%' + person.getMobile() + '%'" />
         select * from person
         <where>
             <if test="person.userName != ''and person.userName!=null">
@@ -75,6 +75,20 @@
             </if>
             <if test="person.mobile != '' and person.mobile !=null">
                and mobile like #{person.mobile}
+            </if>
+        </where>
+    </select>
+
+    <select id="findByPage2" resultMap="baseMap" >
+        select * from person
+        <where>
+            <if test="person.userName != ''and person.userName!=null">
+                <bind name="userName" value="'%' + person.getUserName() + '%'" />
+                userName like #{userName}
+            </if>
+            <if test="person.mobile != '' and person.mobile !=null">
+                <bind name="mobile" value="'%' + person.getMobile() + '%'" />
+                and mobile like #{mobile}
             </if>
         </where>
     </select>

@@ -97,7 +97,7 @@ public class LoginController extends BaseController{
         return "forward:/login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/login2")
     @ResponseBody
     public AjaxResult ajaxLogin(String userName, String password, Boolean rememberMe,HttpSession session)
     {
@@ -120,4 +120,26 @@ public class LoginController extends BaseController{
             return error(msg);
         }
     }
+    @PostMapping("/login")
+    public String login(String userName, String password, Boolean rememberMe,HttpSession session){
+        UsernamePasswordToken token = new UsernamePasswordToken(userName, password, rememberMe);
+        Subject subject = SecurityUtils.getSubject();
+        try
+        {
+            subject.login(token);
+            session.setAttribute("userName",userName);
+            return "forward:/index";
+        }
+        catch (AuthenticationException e)
+        {
+            String msg = "用户或密码错误";
+            if (StringUtils.isNotEmpty(e.getMessage()))
+            {
+                e.printStackTrace();
+                msg = e.getMessage();
+            }
+            return "login";
+        }
+    }
+
 }
