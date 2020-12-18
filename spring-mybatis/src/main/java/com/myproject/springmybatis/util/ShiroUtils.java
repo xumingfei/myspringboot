@@ -97,6 +97,8 @@ public class ShiroUtils {
     public static void main(String[] args) {
         String pwd = MD5Pwd("张三","123456");
         System.out.println(pwd);
+        String salt = randomSalt();
+        System.out.println(salt);
     }
 
 

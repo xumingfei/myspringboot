@@ -29,7 +29,7 @@ public class FileUploadController {
 
     @PostMapping("/upload")
     @ResponseBody
-    public Map<String,Object> upload(Person person, @RequestParam("file") MultipartFile file,@RequestParam("files") MultipartFile[] files) throws IOException {
+    public Map<String,Object> upload(@RequestBody Person person, @RequestParam("file") MultipartFile file,@RequestParam("files") MultipartFile[] files) throws IOException {
 //    public Map<String,Object> upload(Person person, @RequestParam(value = "file",required = false) CommonsMultipartFile file, @RequestParam("files") MultipartFile[] files) throws IOException {
         Map<String,Object> map = new HashMap<>();
         String filePath = "D:\\file\\";
