@@ -64,9 +64,13 @@ public class PersonController {
     public String save(Person person, Map map,@RequestParam("files") MultipartFile[] files) throws IOException {
         System.out.println(files);
         String filePath = "D:\\file\\";
-        for (MultipartFile file :
-                files) {
-            file.transferTo(new File(filePath+file.getOriginalFilename()));
+        if (files != null) {
+            for (MultipartFile file :
+                    files) {
+                if (!file.isEmpty()) {
+                    file.transferTo(new File(filePath+file.getOriginalFilename()));
+                }
+            }
         }
         personservice.addPerson(person);
         map.put("list", personservice.findAll());

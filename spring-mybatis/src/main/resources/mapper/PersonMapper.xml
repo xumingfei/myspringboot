@@ -66,8 +66,12 @@
         select count(1) from person
     </select>
     <select id="findByPage" resultMap="baseMap" >
-        <bind name="userName" value="'%' + person.getUserName() + '%'" />
-        <bind name="mobile" value="'%' + person.getMobile() + '%'" />
+        <if test="person.userName != ''and person.userName!=null">
+            <bind name="userName" value="'%' + person.getUserName() + '%'" />
+        </if>
+        <if test="person.mobile != '' and person.mobile !=null">
+            <bind name="mobile" value="'%' + person.getMobile() + '%'" />
+        </if>
         select * from person
         <where>
             <if test="person.userName != ''and person.userName!=null">
