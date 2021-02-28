@@ -9,6 +9,7 @@ public class Person {
     private Integer age;
     private String sex;
     private String grade;
+    private String createTime;
 
 
     public String getUserName() {
@@ -79,6 +80,14 @@ public class Person {
 
     public void setGrade(String grade) {
         this.grade = grade;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
     @Override
